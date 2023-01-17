@@ -1,20 +1,19 @@
-# Product management assigment
 import mysql.connector
 
-# Connect to the MySQL database
+# Connecting to the MySQL database
 connection = mysql.connector.connect(user='root', password='rps@123', host='localhost', database='kpmg')
 cursor = connection.cursor()
 
-# Create a new product
-def create_product(name, price):
+# Creating the product
+def creation(name, price):
     query = "INSERT INTO products (name, price) VALUES (%s, %s)"
     values = (name, price)
     cursor.execute(query, values)
     connection.commit()
     print("Product created successfully.")
 
-# Read all products
-def read_products():
+# Reading all products
+def reading():
     query = "SELECT * FROM products"
     cursor.execute(query)
     products = cursor.fetchall()
@@ -22,14 +21,14 @@ def read_products():
         print(product)
 
 # Update a product
-def update_product(id, name, price):
+def updation(id, name, price):
     query = "UPDATE products SET name = %s, price = %s WHERE id = %s"
     values = (name, price, id)
     cursor.execute(query, values)
     connection.commit()
     print("Product updated successfully.")
 
-# Delete a product
+# Deleting a specific product
 def delete_product(id):
     query = "DELETE FROM products WHERE id = %s"
     values = (id,)
